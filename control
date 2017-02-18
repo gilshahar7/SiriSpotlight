@@ -1,0 +1,9 @@
+Package: com.gilshahar7.spotlightsiri10
+Name: SpotlightSiri10
+Depends: mobilesubstrate
+Version: 1.1
+Architecture: iphoneos-arm
+Description: Use Siri by prefixing Spotlight searches with "Siri" and pressing cancel.
+Maintainer: gilshahar7
+Author: gilshahar7
+Section: Tweaks
