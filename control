@@ -1,5 +1,5 @@
-Package: com.gilshahar7.spotlightsiri10
-Name: SpotlightSiri10
+Package: com.gilshahar7.sirispotlight
+Name: SiriSpotlight
 Depends: mobilesubstrate
 Version: 1.1
 Architecture: iphoneos-arm
