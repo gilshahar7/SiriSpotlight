@@ -6,6 +6,7 @@
 
 @interface SPUISearchHeader
 @property (retain) SPUITextField * searchField;
+-(void)cancelButtonClicked:(id)arg1;
 @end
 
 @interface SpringBoard
@@ -18,9 +19,6 @@
 - (_Bool)handleSiriButtonDownEventFromSource:(int)arg1 activationEvent:(int)arg2;
 @end
 
-@interface SPUISearchViewController
-- (void)cancelButtonPressed;
-@end
 static SpringBoard *springBoard = nil;
 %hook SpringBoard
 
@@ -30,11 +28,9 @@ static SpringBoard *springBoard = nil;
 }
 %end
 
-%hook SPUISearchViewController
-
-- (void)cancelButtonPressed{
-    SPUISearchHeader *_searchHeader = MSHookIvar<SPUISearchHeader*>(self, "_searchHeader");
-    SPUITextField *searchField = _searchHeader.searchField;
+%hook SPUISearchHeader
+-(BOOL)textFieldShouldReturn:(id)arg1{
+    SPUITextField *searchField = self.searchField;
     
     NSString *searchString = [searchField.text lowercaseString];
     if ([searchString hasPrefix:@"siri"]) {
@@ -48,8 +44,9 @@ static SpringBoard *springBoard = nil;
         [assistantController handleSiriButtonDownEventFromSource:1 activationEvent:1];
         [assistantController handleSiriButtonUpEventFromSource:1];
         searchField.text = @"";
+        [self cancelButtonClicked:nil];
     }
-        %orig;
+        return %orig(arg1);
 }
 
 %end
