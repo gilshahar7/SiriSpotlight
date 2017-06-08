@@ -1,5 +1,5 @@
 # SiriSpotlight
-Cydia tweak: Use Siri by prefixing Spotlight searches with "Siri" and pressing return.
+Jailbreak tweak: Use Siri by prefixing Spotlight searches with "Siri" and pressing return.
 
 Compatible with iOS 10.
 
